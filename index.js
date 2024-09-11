@@ -112,12 +112,12 @@ class SpectraGet {
      *
      * @param {params|object} params - The params to validate against
      * @param {Object} requestData - The request data to validate
-     * @throws {ValidationError} If the request does not match the endpoint
+     * @throws {ValidationError} If the request does not match the params
      * @returns {null|Object} An object with the properties 'error' and 'status_code' if the request is invalid, null otherwise
      */
     validate(params, requestData) {
         try {
-            const missingParameters = endpoint.filter(param => param.mandatory && !requestData[param.name]);
+            const missingParameters = params.filter(param => param.mandatory && !requestData[param.name]);
             if (missingParameters.length > 0) {
                 throw new ValidationError(`Parameter(s) required missing: ${missingParameters.map(param => param.name).join(', ')}`);
             }
