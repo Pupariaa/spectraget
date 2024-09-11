@@ -1,0 +1,11 @@
+{
+  "name": "spectraget",
+  "version": "1.0.9",
+  "description": "A simple library to check URL parameters for your APIs. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "\t"
+  },
+  "author": "Pupariaa",
+  "license": "MIT"
+}
