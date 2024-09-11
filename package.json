@@ -1,11 +1,19 @@
 {
-  "name": "spectraget",
-  "version": "1.0.9",
+  "name": "@pupariaa/spectraget",
+  "version": "1.1.1",
   "description": "A simple library to check URL parameters for your APIs. ",
   "main": "index.js",
   "scripts": {
-    "test": "\t"
+    "publish:github": "npm publish --registry=https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pupariaa/spectraget.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "author": "Pupariaa",
-  "license": "MIT"
+  "license": "MIT",
+   "homepage": "https://github.com/pupariaa/spectraget#readme"
 }
