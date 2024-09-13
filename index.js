@@ -7,6 +7,21 @@ class ValidationError extends Error {
     constructor(message) {
         super(message);
         this.name = 'ValidationError';
+        this.customValidators = {};
+    }
+
+    /**
+     * Adds a custom validation rule to the error.
+     *
+     * @param {string} name - The name of the custom validation rule.
+     * @param {function} validatorFn - The validation function. It should return true if the value is valid, false otherwise.
+     * @throws {Error} If the validator is not a function.
+     */
+    addCustomValidation(name, validatorFn) {
+        if (typeof validatorFn !== 'function') {
+            throw new Error('Validator must be a function');
+        }
+        this.customValidators[name] = validatorFn;
     }
 }
 
@@ -168,6 +183,9 @@ class SpectraGet {
                     }
                     if (foundParam.isJSON) {
                         this.#validateJSON(paramName, requestData[paramName]);
+                    }
+                    if (foundParam.customValidator && this.customValidators[foundParam.customValidator]) {
+                        this.customValidators[foundParam.customValidator](paramName, requestData[paramName], foundParam);
                     }
 
                 } else {

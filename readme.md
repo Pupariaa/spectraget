@@ -1,5 +1,6 @@
 [![npm version](https://img.shields.io/npm/v/spectraget)]([https://www.npmjs.com/package/spectraget](https://www.npmjs.com/package/spectraget))
 [![Downloads](https://img.shields.io/npm/dt/spectraget)]([https://www.npmjs.com/package/spectraget)
+![Static Badge](https://img.shields.io/badge/Github-Spectraget-green?&link=https%3A%2F%2Fgithub.com%2FPupariaa%2Fspectraget)
 
 # SpectraGet
 
@@ -42,8 +43,7 @@ const params = [
     { name: 'email', isEmail: true, mandatory: true },
     { name: 'password', isStrongPassword: true, mandatory: true },
     { name: 'date_of_birth', type: 'date', dateRange: ['2000-01-01', '2023-12-31'] }
-  ]
-
+];
 
 // Request data to be validated
 const requestData = {
@@ -77,9 +77,55 @@ Validates the request data against the defined params rules.
   - Returns `null` if validation passes.
   - Returns an object with `error` and `status_code` if validation fails.
 
-## Custom Validation Rules
+## Custom Validation Methods
 
-You can easily add custom validation rules by extending the `SpectraGet` class and adding new methods. The validation rules can be applied dynamically based on your needs.
+SpectraGet allows you to easily add custom validation methods to suit your specific needs. This flexibility allows you to define your own validation logic and apply it dynamically to your API endpoints.
+
+### Adding a Custom Validation
+
+You can add a custom validation rule by using the `addCustomValidation` method. This method accepts a name for the custom validation and a function that defines the validation logic. The function will receive the parameter name, its value, and the parameter configuration object, allowing you to perform any validation you need.
+
+#### Syntax
+
+```js 
+spectraget.addCustomValidation(name, validatorFn);
+```
+
+- **name**: A unique name for your custom validation.
+- **validatorFn**: A function that contains the logic for validation. This function should throw a `ValidationError` if the validation fails.
+
+#### Example: Adding a Palindrome Validation
+
+Below is an example of how to add a custom validation rule that checks if a string is a palindrome.
+
+```javascript
+const spectraget = require('spectraget');
+
+// Add a custom validation rule
+spectraget.addCustomValidation('isPalindrome', (paramName, paramValue) => {
+    const reversed = paramValue.split('').reverse().join('');
+    if (paramValue !== reversed) {
+        throw new ValidationError(`${paramName} should be a palindrome`);
+    }
+});
+
+// Use the custom validation in the parameters
+const params = [
+    { name: 'username', type: 'string', customValidator: 'isPalindrome', mandatory: true }
+];
+
+const requestData = {
+    username: 'madam'
+};
+
+const result = spectraget.validate(params, requestData);
+
+if (result) {
+    console.error(result.error);
+} else {
+    console.log('Validation passed');
+}
+```
 
 ## License
 
