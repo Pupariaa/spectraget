@@ -1,6 +1,6 @@
 [![npm version](https://img.shields.io/npm/v/spectraget)]([https://www.npmjs.com/package/spectraget](https://www.npmjs.com/package/spectraget))
 [![Downloads](https://img.shields.io/npm/dt/spectraget)]([https://www.npmjs.com/package/spectraget)
-[![Static Badge](https://img.shields.io/badge/Github-Spectraget-green?&link=https%3A%2F%2Fgithub.com%2FPupariaa%2Fspectraget)](https%3A%2F%2Fgithub.com%2FPupariaa%2Fspectraget)
+[![Static Badge](https://img.shields.io/badge/Github-Spectraget-green?&link=https%3A%2F%2Fgithub.com%2FPupariaa%2Fspectraget)](https://github.com/Pupariaa/spectraget)
 
 # SpectraGet
 
